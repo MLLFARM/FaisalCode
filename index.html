@@ -1636,6 +1636,138 @@
 
         </div>
 
+
+        <div
+            class="dashboard-card"
+            id="cloudAccountCard"
+        >
+
+            <div class="card-header">
+
+                <h3>
+                    النسخ الاحتياطي السحابي (Firebase)
+                </h3>
+
+            </div>
+
+
+            <div id="cloudNotConfiguredState">
+
+                <p class="form-help">
+                    لم يتم إعداد Firebase بعد. أضف بيانات مشروعك في ملف js/firebase-config.js لتفعيل المزامنة السحابية التلقائية.
+                </p>
+
+            </div>
+
+
+            <div
+                id="cloudLoggedOutState"
+                style="display:none;"
+            >
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="cloudEmail">
+                            البريد الإلكتروني
+                        </label>
+
+                        <input
+                            id="cloudEmail"
+                            type="email"
+                            placeholder="example@email.com"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="cloudPassword">
+                            كلمة المرور
+                        </label>
+
+                        <input
+                            id="cloudPassword"
+                            type="password"
+                            placeholder="••••••••"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="cloudLoginButton"
+                    >
+                        تسجيل الدخول
+                    </button>
+
+                </div>
+
+
+                <p class="form-help">
+                    أنشئ المستخدم أولًا من لوحة Firebase: Authentication ← Users ← Add user.
+                </p>
+
+            </div>
+
+
+            <div
+                id="cloudLoggedInState"
+                style="display:none;"
+            >
+
+                <div class="database-status">
+
+                    <span class="status active">
+                        متصل
+                    </span>
+
+                    <span id="cloudAccountEmail">
+                    </span>
+
+                </div>
+
+
+                <p
+                    class="form-help"
+                    id="cloudSyncStatusText"
+                >
+                    لم تتم أي مزامنة بعد.
+                </p>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="cloudSyncNowButton"
+                    >
+                        مزامنة الآن
+                    </button>
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="cloudLogoutButton"
+                    >
+                        تسجيل الخروج
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </section>
 
 </main>
@@ -1842,13 +1974,25 @@
 
 
 <!-- ========================= -->
+<!-- Firebase (مزامنة سحابية) -->
+<!-- ========================= -->
+
+<script src="https://www.gstatic.com/firebasejs/12.17.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.17.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore-compat.js"></script>
+
+
+
+<!-- ========================= -->
 <!-- ملفات التطبيق -->
 <!-- ========================= -->
 
+<script src="js/firebase-config.js"></script>
 <script src="js/db.js"></script>
 <script src="js/products.js"></script>
 <script src="js/sales.js"></script>
 <script src="js/reports.js"></script>
+<script src="js/cloud-sync.js"></script>
 <script src="js/app.js"></script>
 
 

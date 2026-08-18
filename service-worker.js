@@ -13,7 +13,7 @@
 */
 
 
-const CACHE_VERSION = "v1";
+const CACHE_VERSION = "v2";
 
 const CACHE_NAME =
     `resthouse-app-${CACHE_VERSION}`;
@@ -31,10 +31,12 @@ const APP_SHELL = [
 
     "./css/style.css",
 
+    "./js/firebase-config.js",
     "./js/db.js",
     "./js/products.js",
     "./js/sales.js",
     "./js/reports.js",
+    "./js/cloud-sync.js",
     "./js/app.js",
 
     "./icons/icon-192.png",
@@ -47,6 +49,11 @@ const APP_SHELL = [
 /*
     مكتبات خارجية (CDN) يحتاجها
     التطبيق للعمل بدون إنترنت
+
+    ملاحظة: تخزين ملفات Firebase هنا
+    يسمح بفتح التطبيق بدون إنترنت، لكن
+    ميزات تسجيل الدخول والمزامنة السحابية
+    نفسها تبقى بحاجة فعلية للإنترنت.
 */
 
 const EXTERNAL_ASSETS = [
@@ -55,7 +62,11 @@ const EXTERNAL_ASSETS = [
     "https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.13.0/sql-wasm.wasm",
 
     "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js",
-    "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+    "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js",
+
+    "https://www.gstatic.com/firebasejs/12.17.1/firebase-app-compat.js",
+    "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth-compat.js",
+    "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore-compat.js"
 
 ];
 

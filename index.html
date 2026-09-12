@@ -1,0 +1,3784 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="theme-color"
+        content="#1f7a4d"
+    >
+
+    <!-- ========================= -->
+    <!-- إعدادات التطبيق (PWA) -->
+    <!-- ========================= -->
+
+    <link
+        rel="manifest"
+        href="manifest.json"
+    >
+
+    <link
+        rel="apple-touch-icon"
+        href="icons/apple-touch-icon.png"
+    >
+
+    <meta
+        name="apple-mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="black-translucent"
+    >
+
+    <meta
+        name="apple-mobile-web-app-title"
+        content="الاستراحة"
+    >
+
+    <title>إدارة الاستراحة</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+<body>
+
+<!-- ========================= -->
+<!-- شاشة اختيار القسم -->
+<!-- ========================= -->
+
+<div
+    id="workspaceLandingPage"
+    class="workspace-landing"
+>
+
+    <div class="workspace-landing-inner">
+
+        <h1 class="workspace-landing-title">
+            أهلًا بك 👋
+        </h1>
+
+        <p class="workspace-landing-subtitle">
+            اختر القسم الذي تريد العمل عليه
+        </p>
+
+
+        <div class="workspace-cards">
+
+            <button
+                type="button"
+                class="workspace-card workspace-card-mint"
+                data-workspace="mint"
+            >
+
+                <span class="workspace-card-icon">
+                    🌿
+                </span>
+
+                <span class="workspace-card-title">
+                    النعناع والخضروات
+                </span>
+
+                <span class="workspace-card-subtitle">
+                    المبيعات والتقارير الخاصة بالمحاصيل الطازجة
+                </span>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="workspace-card workspace-card-nursery"
+                data-workspace="nursery"
+            >
+
+                <span class="workspace-card-icon">
+                    🌱
+                </span>
+
+                <span class="workspace-card-title">
+                    المشتل
+                </span>
+
+                <span class="workspace-card-subtitle">
+                    المبيعات والتقارير الخاصة بالشتلات
+                </span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- التطبيق الرئيسي -->
+<!-- ========================= -->
+
+<div
+    id="appShell"
+    style="display:none;"
+>
+
+<!-- ========================= -->
+<!-- رأس التطبيق -->
+<!-- ========================= -->
+
+<header class="topbar">
+
+    <div>
+
+        <h1>
+            إدارة الاستراحة
+        </h1>
+
+        <p
+            id="activeWorkspaceLabel"
+            class="active-workspace-label"
+        >
+            إدارة المبيعات والمنتجات
+        </p>
+
+    </div>
+
+    <div class="topbar-actions">
+
+        <button
+            class="theme-toggle-button"
+            id="themeToggleButton"
+            type="button"
+            aria-label="تبديل الوضع الليلي"
+        >
+            🌙
+        </button>
+
+
+        <button
+            class="menu-button"
+            id="menuButton"
+            type="button"
+            aria-label="فتح القائمة"
+        >
+            ☰
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- ========================= -->
+<!-- القائمة الجانبية -->
+<!-- ========================= -->
+
+<aside
+    class="sidebar"
+    id="sidebar"
+>
+
+    <div class="sidebar-title">
+
+        <strong>
+            القائمة الرئيسية
+        </strong>
+
+    </div>
+
+
+    <button
+        class="nav-item active"
+        data-page="dashboard"
+        type="button"
+    >
+
+        <span>📊</span>
+
+        <span>
+            لوحة التحكم
+        </span>
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        data-page="sales"
+        type="button"
+    >
+
+        <span>💰</span>
+
+        <span>
+            المبيعات
+        </span>
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        data-page="production"
+        type="button"
+    >
+
+        <span>🌿</span>
+
+        <span>
+            الإنتاج والمعروض
+        </span>
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        data-page="returns"
+        type="button"
+    >
+
+        <span>↩️</span>
+
+        <span>
+            الرجيع والتالف
+        </span>
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        data-page="expenses"
+        type="button"
+    >
+
+        <span>🧾</span>
+
+        <span>
+            المصاريف
+        </span>
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        data-page="products"
+        type="button"
+    >
+
+        <span>📦</span>
+
+        <span>
+            المنتجات
+        </span>
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        data-page="reports"
+        type="button"
+    >
+
+        <span>📈</span>
+
+        <span>
+            التقارير
+        </span>
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        data-page="settings"
+        type="button"
+    >
+
+        <span>⚙️</span>
+
+        <span>
+            الإعدادات
+        </span>
+
+    </button>
+
+
+    <hr class="sidebar-divider">
+
+
+    <button
+        class="nav-item nav-item-switch"
+        id="switchWorkspaceButton"
+        type="button"
+    >
+
+        <span>🔀</span>
+
+        <span>
+            تبديل القسم
+        </span>
+
+    </button>
+
+</aside>
+
+
+<!-- ========================= -->
+<!-- زر تسجيل بيع سريع -->
+<!-- ========================= -->
+
+<button
+    class="quick-sale-fab"
+    id="quickSaleFab"
+    type="button"
+    aria-label="تسجيل عملية بيع جديدة"
+>
+
+    <span class="quick-sale-fab-icon">+</span>
+
+</button>
+
+
+<!-- ========================= -->
+<!-- المحتوى الرئيسي -->
+<!-- ========================= -->
+
+<main class="main-content">
+
+
+    <!-- ========================= -->
+    <!-- لوحة التحكم -->
+    <!-- ========================= -->
+
+    <section
+        id="dashboardPage"
+        class="page active-page"
+    >
+
+        <div class="page-header">
+
+            <div>
+
+                <h2>
+                    لوحة التحكم
+                </h2>
+
+                <p id="todayText"></p>
+
+            </div>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    💰
+                </div>
+
+                <div>
+
+                    <span>
+                        مبيعات اليوم
+                    </span>
+
+                    <strong id="dashboardTodaySales">
+                        0.00 ريال
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📦
+                </div>
+
+                <div>
+
+                    <span>
+                        المنتجات المباعة اليوم
+                    </span>
+
+                    <strong id="dashboardTodayQuantity">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ↩️
+                </div>
+
+                <div>
+
+                    <span>
+                        الرجيع اليوم
+                    </span>
+
+                    <strong id="dashboardTodayWaste">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🌿
+                </div>
+
+                <div>
+
+                    <span>
+                        عدد المنتجات
+                    </span>
+
+                    <strong id="productCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <h3>
+                    اتجاه المبيعات وصافي الربح (آخر ٣٠ يومًا)
+                </h3>
+
+            </div>
+
+
+            <div class="chart-container">
+
+                <canvas id="dashboardTrendChart"></canvas>
+
+            </div>
+
+
+            <div
+                class="empty-state small"
+                id="dashboardChartEmptyState"
+                style="display:none;"
+            >
+
+                <div class="empty-icon">
+                    📈
+                </div>
+
+                <h3>
+                    لا توجد بيانات كافية بعد
+                </h3>
+
+                <p>
+                    سجّل بعض عمليات البيع لترى الرسم البياني هنا.
+                </p>
+
+            </div>
+
+
+            <div class="modal-actions dashboard-quick-actions">
+
+                <button
+                    class="primary-button"
+                    type="button"
+                    id="goProductsButton"
+                >
+                    إدارة المنتجات
+                </button>
+
+
+                <button
+                    class="secondary-button dashboard-sales-button"
+                    type="button"
+                    id="goSalesButton"
+                >
+                    تسجيل بيع
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================= -->
+    <!-- المبيعات -->
+    <!-- ========================= -->
+
+    <section
+        id="salesPage"
+        class="page"
+    >
+
+        <div class="page-header">
+
+            <div>
+
+                <h2>
+                    المبيعات
+                </h2>
+
+                <p>
+                    تسجيل عمليات البيع ومتابعة سجل المبيعات
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="dashboard-card"
+            id="salesFormCard"
+        >
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3 id="saleFormTitle">
+                        تسجيل عملية بيع
+                    </h3>
+
+                    <p class="form-help">
+                        اختر التاريخ ثم أضف كل منتج على حدة إلى الفاتورة، ثم احفظ العملية.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="sale-number-box">
+
+                <span>
+                    رقم الفاتورة
+                </span>
+
+                <strong id="saleNumberDisplay">
+                    سيتم إنشاؤه تلقائيًا
+                </strong>
+
+            </div>
+
+
+            <form id="saleForm">
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="saleDate">
+                            التاريخ
+                        </label>
+
+                        <input
+                            id="saleDate"
+                            type="date"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            نوع العملية
+                        </label>
+
+                        <div class="radio-group">
+
+                            <label class="radio-option">
+
+                                <input
+                                    type="radio"
+                                    name="saleType"
+                                    value="sale"
+                                    checked
+                                >
+
+                                <span>
+                                    بيع عادي
+                                </span>
+
+                            </label>
+
+
+                            <label class="radio-option">
+
+                                <input
+                                    type="radio"
+                                    name="saleType"
+                                    value="free"
+                                >
+
+                                <span>
+                                    مجاني
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="saleCustomerName">
+                            اسم العميل (اختياري)
+                        </label>
+
+                        <input
+                            id="saleCustomerName"
+                            type="text"
+                            maxlength="150"
+                            placeholder="مثال: أبو محمد"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="saleCustomerPhone">
+                            جوال العميل (اختياري)
+                        </label>
+
+                        <input
+                            id="saleCustomerPhone"
+                            type="tel"
+                            maxlength="20"
+                            placeholder="05xxxxxxxx"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="salePaymentMethod">
+                            طريقة الدفع
+                        </label>
+
+                        <select id="salePaymentMethod">
+
+                            <option value="cash">
+                                نقدي
+                            </option>
+
+                            <option value="card">
+                                بطاقة
+                            </option>
+
+                            <option value="transfer">
+                                تحويل بنكي
+                            </option>
+
+                            <option value="other">
+                                أخرى
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="salePaymentStatus">
+                            حالة الدفع
+                        </label>
+
+                        <select id="salePaymentStatus">
+
+                            <option value="paid">
+                                مدفوعة
+                            </option>
+
+                            <option value="unpaid">
+                                غير مدفوعة
+                            </option>
+
+                            <option value="partial">
+                                مدفوعة جزئيًا
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="saleTaxRate">
+                        نسبة الضريبة % (اتركها 0 لعدم تطبيق ضريبة)
+                    </label>
+
+                    <input
+                        id="saleTaxRate"
+                        type="number"
+                        min="0"
+                        max="100"
+                        step="0.01"
+                        value="0"
+                    >
+
+                </div>
+
+
+                <hr class="section-divider">
+
+
+                <p class="form-help">
+                    اختر المنتجات وحدد الكمية بالضغط على + أو -
+                </p>
+
+
+                <div class="form-group">
+
+                    <input
+                        id="saleProductSearch"
+                        type="text"
+                        placeholder="ابحث عن منتج..."
+                    >
+
+                </div>
+
+
+                <div
+                    id="saleProductPickerList"
+                    class="product-picker-list"
+                >
+                </div>
+
+
+                <div
+                    class="empty-state small"
+                    id="saleProductPickerEmpty"
+                    style="display:none;"
+                >
+
+                    <div class="empty-icon">
+                        🔍
+                    </div>
+
+                    <h3>
+                        لا توجد نتائج
+                    </h3>
+
+                    <p>
+                        جرّب كلمة بحث أخرى.
+                    </p>
+
+                </div>
+
+
+                <hr class="section-divider">
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>المنتج</th>
+                                <th>الكمية</th>
+                                <th>السعر</th>
+                                <th>الخصم</th>
+                                <th>الإجمالي</th>
+                                <th></th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="saleCartTableBody">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div
+                    class="empty-state small"
+                    id="saleCartEmptyState"
+                >
+
+                    <div class="empty-icon">
+                        🧺
+                    </div>
+
+                    <h3>
+                        الفاتورة فارغة
+                    </h3>
+
+                    <p>
+                        أضف صنفًا واحدًا على الأقل قبل الحفظ.
+                    </p>
+
+                </div>
+
+
+                <div class="total-box">
+
+                    <span>
+                        المجموع الفرعي
+                    </span>
+
+                    <strong id="saleSubtotal">
+                        0.00 ريال
+                    </strong>
+
+                </div>
+
+
+                <div
+                    class="total-box"
+                    id="saleTaxRow"
+                >
+
+                    <span>
+                        الضريبة
+                    </span>
+
+                    <strong id="saleTaxAmount">
+                        0.00 ريال
+                    </strong>
+
+                </div>
+
+
+                <div class="total-box grand-total">
+
+                    <span>
+                        الإجمالي النهائي
+                    </span>
+
+                    <strong id="saleTotal">
+                        0.00 ريال
+                    </strong>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="saleNotes">
+                        ملاحظات على الفاتورة
+                    </label>
+
+                    <textarea
+                        id="saleNotes"
+                        rows="3"
+                        maxlength="500"
+                        placeholder="مثال: خصم للعميل أو ملاحظة على العملية"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="modal-actions sale-form-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="cancelSaleEditButton"
+                        style="display:none;"
+                    >
+                        إلغاء التعديل
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        حفظ الفاتورة
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+
+        <div class="stats-grid sales-summary-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    💰
+                </div>
+
+                <div>
+
+                    <span>
+                        إجمالي المبيعات
+                    </span>
+
+                    <strong id="salesTotalSummary">
+                        0.00 ريال
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📦
+                </div>
+
+                <div>
+
+                    <span>
+                        إجمالي الكميات
+                    </span>
+
+                    <strong id="salesQuantitySummary">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🧾
+                </div>
+
+                <div>
+
+                    <span>
+                        عدد الفواتير
+                    </span>
+
+                    <strong id="salesCountSummary">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <h3>
+                    سجل المبيعات
+                </h3>
+
+                <span class="product-counter">
+                    جميع العمليات
+                </span>
+
+            </div>
+
+
+            <form
+                id="salesFilterForm"
+                class="sales-filter-form"
+            >
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="salesFilterInvoice">
+                            رقم الفاتورة
+                        </label>
+
+                        <input
+                            id="salesFilterInvoice"
+                            type="text"
+                            placeholder="INV-000001"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="salesFilterProduct">
+                            اسم المنتج
+                        </label>
+
+                        <input
+                            id="salesFilterProduct"
+                            type="text"
+                            placeholder="اسم المنتج"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="salesFilterCustomer">
+                            اسم العميل
+                        </label>
+
+                        <input
+                            id="salesFilterCustomer"
+                            type="text"
+                            placeholder="اسم العميل"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="salesFilterPaymentMethod">
+                            طريقة الدفع
+                        </label>
+
+                        <select id="salesFilterPaymentMethod">
+
+                            <option value="">
+                                الكل
+                            </option>
+
+                            <option value="cash">
+                                نقدي
+                            </option>
+
+                            <option value="card">
+                                بطاقة
+                            </option>
+
+                            <option value="transfer">
+                                تحويل بنكي
+                            </option>
+
+                            <option value="other">
+                                أخرى
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="salesFilterDateFrom">
+                            من تاريخ
+                        </label>
+
+                        <input
+                            id="salesFilterDateFrom"
+                            type="date"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="salesFilterDateTo">
+                            إلى تاريخ
+                        </label>
+
+                        <input
+                            id="salesFilterDateTo"
+                            type="date"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="salesFilterAmountMin">
+                            أقل قيمة
+                        </label>
+
+                        <input
+                            id="salesFilterAmountMin"
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            placeholder="0"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="salesFilterAmountMax">
+                            أعلى قيمة
+                        </label>
+
+                        <input
+                            id="salesFilterAmountMax"
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            placeholder="0"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        بحث
+                    </button>
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="salesFilterResetButton"
+                    >
+                        إعادة تعيين
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>رقم الفاتورة</th>
+                            <th>التاريخ</th>
+                            <th>المنتجات</th>
+                            <th>الكمية الإجمالية</th>
+                            <th>الإجمالي</th>
+                            <th>النوع</th>
+                            <th>الإجراءات</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="salesTableBody">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div
+                class="empty-state small"
+                id="salesEmptyState"
+            >
+
+                <div class="empty-icon">
+                    💰
+                </div>
+
+                <h3>
+                    لا توجد عمليات بيع
+                </h3>
+
+                <p>
+                    سجل أول عملية بيع باستخدام النموذج أعلاه.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================= -->
+    <!-- المنتجات -->
+    <!-- ========================= -->
+
+    <section
+        id="productsPage"
+        class="page"
+    >
+
+        <div class="page-header">
+
+            <div>
+
+                <h2>
+                    المنتجات
+                </h2>
+
+                <p>
+                    إدارة المنتجات والأسعار والوحدات
+                </p>
+
+            </div>
+
+
+            <button
+                class="primary-button"
+                id="addProductButton"
+                type="button"
+            >
+                + إضافة منتج
+            </button>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <h3>
+                    قائمة المنتجات
+                </h3>
+
+                <span
+                    class="product-counter"
+                    id="productCounter"
+                >
+                    0 منتج
+                </span>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>المنتج</th>
+                            <th>الوحدة</th>
+                            <th>السعر</th>
+                            <th>الحالة</th>
+                            <th>الإجراءات</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="productsTableBody">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div
+                class="empty-state small"
+                id="productsEmptyState"
+            >
+
+                <div class="empty-icon">
+                    📦
+                </div>
+
+                <h3>
+                    لا توجد منتجات
+                </h3>
+
+                <p>
+                    أضف أول منتج للبدء.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================= -->
+    <!-- الإنتاج -->
+    <!-- ========================= -->
+
+    <section
+        id="productionPage"
+        class="page"
+    >
+
+        <div class="page-header">
+
+            <div>
+
+                <h2>
+                    الإنتاج والمعروض
+                </h2>
+
+                <p>
+                    سجّل الكميات التي جهّزتها وعرضتها للبيع كل يوم.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <h3 id="productionFormTitle">
+                    تسجيل كمية معروضة
+                </h3>
+
+            </div>
+
+
+            <form id="productionForm">
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="productionDate">
+                            التاريخ
+                        </label>
+
+                        <input
+                            id="productionDate"
+                            type="date"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="productionProduct">
+                            المنتج
+                        </label>
+
+                        <select
+                            id="productionProduct"
+                            required
+                        >
+
+                            <option value="">
+                                اختر المنتج
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="productionQuantity">
+                            الكمية المعروضة
+                        </label>
+
+                        <input
+                            id="productionQuantity"
+                            type="number"
+                            min="0.001"
+                            step="0.001"
+                            placeholder="مثال: 10"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="productionUnit">
+                            الوحدة
+                        </label>
+
+                        <input
+                            id="productionUnit"
+                            type="text"
+                            readonly
+                            placeholder="تظهر تلقائيًا"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="productionNotes">
+                        ملاحظات (اختياري)
+                    </label>
+
+                    <input
+                        id="productionNotes"
+                        type="text"
+                        maxlength="200"
+                        placeholder="مثال: دفعة الصباح"
+                    >
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="cancelProductionEditButton"
+                        style="display:none;"
+                    >
+                        إلغاء التعديل
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        حفظ
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <h3>
+                    سجل الإنتاج والمعروض
+                </h3>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>التاريخ</th>
+                            <th>المنتج</th>
+                            <th>الكمية المعروضة</th>
+                            <th>ملاحظات</th>
+                            <th>الإجراءات</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="productionTableBody">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div
+                class="empty-state small"
+                id="productionEmptyState"
+            >
+
+                <div class="empty-icon">
+                    🌿
+                </div>
+
+                <h3>
+                    لا توجد سجلات بعد
+                </h3>
+
+                <p>
+                    سجّل أول كمية معروضة باستخدام النموذج أعلاه.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================= -->
+    <!-- الرجيع والتالف -->
+    <!-- ========================= -->
+
+    <section
+        id="returnsPage"
+        class="page"
+    >
+
+        <div class="page-header">
+
+            <div>
+
+                <h2>
+                    الرجيع والتالف
+                </h2>
+
+                <p>
+                    سجّل ما لم يُباع من الكمية المعروضة، وحدد نوعه: تالف (يُخصم من صافي الربح) أو مرتجع قابل للبيع لاحقًا.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <h3 id="wasteFormTitle">
+                    تسجيل رجيع / تالف
+                </h3>
+
+            </div>
+
+
+            <form id="wasteForm">
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="wasteDate">
+                            التاريخ
+                        </label>
+
+                        <input
+                            id="wasteDate"
+                            type="date"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="wasteProduct">
+                            المنتج
+                        </label>
+
+                        <select
+                            id="wasteProduct"
+                            required
+                        >
+
+                            <option value="">
+                                اختر المنتج
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="wasteQuantity">
+                            الكمية
+                        </label>
+
+                        <input
+                            id="wasteQuantity"
+                            type="number"
+                            min="0.001"
+                            step="0.001"
+                            placeholder="مثال: 1"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="wasteUnit">
+                            الوحدة
+                        </label>
+
+                        <input
+                            id="wasteUnit"
+                            type="text"
+                            readonly
+                            placeholder="تظهر تلقائيًا"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        النوع
+                    </label>
+
+                    <div class="radio-group">
+
+                        <label class="radio-option">
+
+                            <input
+                                type="radio"
+                                name="wasteType"
+                                value="spoiled"
+                                checked
+                            >
+
+                            <span>
+                                تالف (يُخصم من صافي الربح)
+                            </span>
+
+                        </label>
+
+
+                        <label class="radio-option">
+
+                            <input
+                                type="radio"
+                                name="wasteType"
+                                value="returned"
+                            >
+
+                            <span>
+                                مرتجع قابل للبيع لاحقًا
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="wasteUnitValue">
+                        قيمة الوحدة (تُحسب تلقائيًا من سعر المنتج، قابلة للتعديل)
+                    </label>
+
+                    <input
+                        id="wasteUnitValue"
+                        type="number"
+                        min="0"
+                        step="0.01"
+                    >
+
+                </div>
+
+
+                <div class="total-box">
+
+                    <span>
+                        القيمة الإجمالية
+                    </span>
+
+                    <strong id="wasteTotalValue">
+                        0.00 ريال
+                    </strong>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="wasteNotes">
+                        ملاحظات (اختياري)
+                    </label>
+
+                    <input
+                        id="wasteNotes"
+                        type="text"
+                        maxlength="200"
+                        placeholder="مثال: ذبل بسبب الحرارة"
+                    >
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="cancelWasteEditButton"
+                        style="display:none;"
+                    >
+                        إلغاء التعديل
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        حفظ
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🗑️
+                </div>
+
+                <div>
+
+                    <span>
+                        إجمالي قيمة التالف هذا الشهر
+                    </span>
+
+                    <strong id="wasteMonthTotal">
+                        0.00 ريال
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <h3>
+                    سجل الرجيع والتالف
+                </h3>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>التاريخ</th>
+                            <th>المنتج</th>
+                            <th>الكمية</th>
+                            <th>النوع</th>
+                            <th>القيمة</th>
+                            <th>ملاحظات</th>
+                            <th>الإجراءات</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="wasteTableBody">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div
+                class="empty-state small"
+                id="wasteEmptyState"
+            >
+
+                <div class="empty-icon">
+                    ↩️
+                </div>
+
+                <h3>
+                    لا توجد سجلات بعد
+                </h3>
+
+                <p>
+                    سجّل أول عملية رجيع أو تالف باستخدام النموذج أعلاه.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================= -->
+    <!-- المصاريف -->
+    <!-- ========================= -->
+
+    <section
+        id="expensesPage"
+        class="page"
+    >
+
+        <div class="page-header">
+
+            <div>
+
+                <h2>
+                    المصاريف
+                </h2>
+
+                <p>
+                    سجّل مصاريف المزرعة (بذور، عمالة، وقود، أسمدة...) لحساب صافي الربح الحقيقي.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <h3 id="expenseFormTitle">
+                    تسجيل مصروف
+                </h3>
+
+            </div>
+
+
+            <form id="expenseForm">
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="expenseDate">
+                            التاريخ
+                        </label>
+
+                        <input
+                            id="expenseDate"
+                            type="date"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="expenseCategory">
+                            التصنيف
+                        </label>
+
+                        <select id="expenseCategory">
+
+                            <option value="بذور">
+                                بذور
+                            </option>
+
+                            <option value="أسمدة ومبيدات">
+                                أسمدة ومبيدات
+                            </option>
+
+                            <option value="عمالة">
+                                عمالة
+                            </option>
+
+                            <option value="وقود">
+                                وقود
+                            </option>
+
+                            <option value="ري ومياه">
+                                ري ومياه
+                            </option>
+
+                            <option value="صيانة ومعدات">
+                                صيانة ومعدات
+                            </option>
+
+                            <option value="نقل">
+                                نقل
+                            </option>
+
+                            <option value="إيجار">
+                                إيجار
+                            </option>
+
+                            <option value="أخرى">
+                                أخرى
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="expenseAmount">
+                        المبلغ
+                    </label>
+
+                    <input
+                        id="expenseAmount"
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        placeholder="0.00"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="expenseNotes">
+                        ملاحظات (اختياري)
+                    </label>
+
+                    <input
+                        id="expenseNotes"
+                        type="text"
+                        maxlength="200"
+                        placeholder="تفاصيل إضافية"
+                    >
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="cancelExpenseEditButton"
+                        style="display:none;"
+                    >
+                        إلغاء التعديل
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        حفظ
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🧾
+                </div>
+
+                <div>
+
+                    <span>
+                        إجمالي مصاريف هذا الشهر
+                    </span>
+
+                    <strong id="expenseMonthTotal">
+                        0.00 ريال
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📈
+                </div>
+
+                <div>
+
+                    <span>
+                        صافي الربح هذا الشهر
+                    </span>
+
+                    <strong id="netProfitMonthTotal">
+                        0.00 ريال
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <h3>
+                    سجل المصاريف
+                </h3>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>التاريخ</th>
+                            <th>التصنيف</th>
+                            <th>المبلغ</th>
+                            <th>ملاحظات</th>
+                            <th>الإجراءات</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="expensesTableBody">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div
+                class="empty-state small"
+                id="expensesEmptyState"
+            >
+
+                <div class="empty-icon">
+                    🧾
+                </div>
+
+                <h3>
+                    لا توجد مصاريف مسجّلة بعد
+                </h3>
+
+                <p>
+                    سجّل أول مصروف باستخدام النموذج أعلاه.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================= -->
+    <!-- التقارير -->
+    <!-- ========================= -->
+
+    <section
+        id="reportsPage"
+        class="page"
+    >
+
+        <div class="page-header">
+
+            <div>
+
+                <h2>
+                    التقارير
+                </h2>
+
+                <p>
+                    تقرير شهري أو سنوي للمبيعات، قابل للتنزيل كملف PDF
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <h3>
+                    إعداد التقرير
+                </h3>
+
+            </div>
+
+
+            <form id="reportFilterForm">
+
+                <div class="form-group">
+
+                    <label>
+                        نوع التقرير
+                    </label>
+
+                    <div class="radio-group">
+
+                        <label class="radio-option">
+
+                            <input
+                                type="radio"
+                                name="reportType"
+                                value="month"
+                                checked
+                            >
+
+                            <span>
+                                شهري
+                            </span>
+
+                        </label>
+
+
+                        <label class="radio-option">
+
+                            <input
+                                type="radio"
+                                name="reportType"
+                                value="year"
+                            >
+
+                            <span>
+                                سنوي
+                            </span>
+
+                        </label>
+
+
+                        <label class="radio-option">
+
+                            <input
+                                type="radio"
+                                name="reportType"
+                                value="custom"
+                            >
+
+                            <span>
+                                أشهر محددة
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div
+                        class="form-group"
+                        id="reportMonthGroup"
+                    >
+
+                        <label for="reportMonth">
+                            الشهر
+                        </label>
+
+                        <select id="reportMonth">
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="reportYear">
+                            السنة
+                        </label>
+
+                        <select id="reportYear">
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="form-group"
+                    id="reportCustomMonthsGroup"
+                    style="display:none;"
+                >
+
+                    <label>
+                        اختر شهرًا واحدًا أو أكثر
+                    </label>
+
+                    <div
+                        class="month-checkbox-grid"
+                        id="reportCustomMonthsGrid"
+                    >
+                    </div>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        إنشاء التقرير
+                    </button>
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="downloadReportButton"
+                        style="display:none;"
+                    >
+                        طباعة / حفظ PDF
+                    </button>
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="excelExportButton"
+                        style="display:none;"
+                    >
+                        تصدير Excel
+                    </button>
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="shareImageButton"
+                        style="display:none;"
+                    >
+                        مشاركة كصورة
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <div
+            class="dashboard-card"
+            id="reportEmptyCard"
+        >
+
+            <div
+                class="empty-state small"
+                id="reportEmptyState"
+            >
+
+                <div class="empty-icon">
+                    📈
+                </div>
+
+                <h3>
+                    لا يوجد تقرير بعد
+                </h3>
+
+                <p>
+                    اختر الفترة ثم اضغط "إنشاء التقرير" لعرض النتائج.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="reportPrintArea"
+            style="display:none;"
+        >
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3 id="reportBusinessName">
+                        </h3>
+
+                        <p id="reportPeriodTitle">
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        💰
+                    </div>
+
+                    <div>
+
+                        <span>
+                            إجمالي المبيعات
+                        </span>
+
+                        <strong id="reportTotalSales">
+                            0.00 ريال
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        📦
+                    </div>
+
+                    <div>
+
+                        <span>
+                            إجمالي الكميات
+                        </span>
+
+                        <strong id="reportTotalQuantity">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🧾
+                    </div>
+
+                    <div>
+
+                        <span>
+                            عدد العمليات
+                        </span>
+
+                        <strong id="reportTotalCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🎁
+                    </div>
+
+                    <div>
+
+                        <span>
+                            عمليات مجانية
+                        </span>
+
+                        <strong id="reportFreeCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        📊
+                    </div>
+
+                    <div>
+
+                        <span>
+                            متوسط قيمة البيع
+                        </span>
+
+                        <strong id="reportAverageSale">
+                            0.00 ريال
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🏆
+                    </div>
+
+                    <div>
+
+                        <span>
+                            أكثر منتج مبيعًا
+                        </span>
+
+                        <strong id="reportTopProduct">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        📅
+                    </div>
+
+                    <div>
+
+                        <span>
+                            أفضل يوم مبيعات
+                        </span>
+
+                        <strong id="reportBestDay">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🏷️
+                    </div>
+
+                    <div>
+
+                        <span>
+                            إجمالي الخصومات
+                        </span>
+
+                        <strong id="reportTotalDiscount">
+                            0.00 ريال
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="stat-card year-only-stat"
+                    style="display:none;"
+                >
+
+                    <div class="stat-icon">
+                        📈
+                    </div>
+
+                    <div>
+
+                        <span>
+                            أفضل شهر
+                        </span>
+
+                        <strong id="reportBestMonth">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="stat-card year-only-stat"
+                    style="display:none;"
+                >
+
+                    <div class="stat-icon">
+                        📉
+                    </div>
+
+                    <div>
+
+                        <span>
+                            أسوأ شهر
+                        </span>
+
+                        <strong id="reportWorstMonth">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="stat-card year-only-stat"
+                    style="display:none;"
+                >
+
+                    <div class="stat-icon">
+                        ⚖️
+                    </div>
+
+                    <div>
+
+                        <span>
+                            مقارنة بالعام السابق
+                        </span>
+
+                        <strong id="reportYearComparison">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🧾
+                    </div>
+
+                    <div>
+
+                        <span>
+                            إجمالي المصاريف
+                        </span>
+
+                        <strong id="reportTotalExpenses">
+                            0.00 ريال
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🗑️
+                    </div>
+
+                    <div>
+
+                        <span>
+                            قيمة التالف
+                        </span>
+
+                        <strong id="reportTotalWaste">
+                            0.00 ريال
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        📋
+                    </div>
+
+                    <div>
+
+                        <span>
+                            عدد عمليات التالف
+                        </span>
+
+                        <strong id="reportWasteCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        💵
+                    </div>
+
+                    <div>
+
+                        <span>
+                            صافي الربح
+                        </span>
+
+                        <strong id="reportNetProfit">
+                            0.00 ريال
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="stat-card year-only-stat"
+                    style="display:none;"
+                >
+
+                    <div class="stat-icon">
+                        🏆
+                    </div>
+
+                    <div>
+
+                        <span>
+                            أفضل شهر من حيث الربح
+                        </span>
+
+                        <strong id="reportBestProfitMonth">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="stat-card year-only-stat"
+                    style="display:none;"
+                >
+
+                    <div class="stat-icon">
+                        📉
+                    </div>
+
+                    <div>
+
+                        <span>
+                            أسوأ شهر من حيث الربح
+                        </span>
+
+                        <strong id="reportWorstProfitMonth">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <h3>
+                        الأداء حسب المنتج
+                    </h3>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>المنتج</th>
+                                <th>الكمية المباعة</th>
+                                <th>عدد العمليات</th>
+                                <th>الإجمالي</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="reportProductsTableBody">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="dashboard-card"
+                id="reportWasteCard"
+                style="display:none;"
+            >
+
+                <div class="card-header">
+
+                    <h3>
+                        التالف حسب المنتج
+                    </h3>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>المنتج</th>
+                                <th>الكمية التالفة</th>
+                                <th>عدد العمليات</th>
+                                <th>القيمة</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="reportWasteTableBody">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div
+                    class="empty-state small"
+                    id="reportWasteEmptyState"
+                >
+
+                    <div class="empty-icon">
+                        ✅
+                    </div>
+
+                    <h3>
+                        لا يوجد تالف في هذه الفترة
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <h3 id="reportDailyTitle">
+                        ملخص المبيعات اليومية
+                    </h3>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr id="reportDailyTableHeader">
+
+                                <th>التاريخ</th>
+                                <th>عدد الفواتير</th>
+                                <th>الكمية</th>
+                                <th>الإجمالي</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="reportDailyTableBody">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <h3>
+                        المبيعات حسب طريقة الدفع
+                    </h3>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>طريقة الدفع</th>
+                                <th>عدد الفواتير</th>
+                                <th>الإجمالي</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="reportPaymentTableBody">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <h3>
+                        تفاصيل العمليات
+                    </h3>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>رقم الفاتورة</th>
+                                <th>التاريخ</th>
+                                <th>المنتج</th>
+                                <th>الكمية</th>
+                                <th>السعر</th>
+                                <th>الخصم</th>
+                                <th>الإجمالي</th>
+                                <th>النوع</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="reportDetailsTableBody">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================= -->
+    <!-- الإعدادات -->
+    <!-- ========================= -->
+
+    <section
+        id="settingsPage"
+        class="page"
+    >
+
+        <div class="page-header">
+
+            <div>
+
+                <h2>
+                    الإعدادات
+                </h2>
+
+                <p>
+                    الإعدادات الأساسية للتطبيق.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <h3>
+                    بيانات الاستراحة
+                </h3>
+
+            </div>
+
+
+            <form id="settingsForm">
+
+                <div class="form-group">
+
+                    <label for="settingBusinessName">
+                        اسم المنشأة
+                    </label>
+
+                    <input
+                        id="settingBusinessName"
+                        type="text"
+                        maxlength="150"
+                        placeholder="إدارة الاستراحة"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        شعار المنشأة (اختياري)
+                    </label>
+
+                    <div class="logo-upload-row">
+
+                        <img
+                            id="settingLogoPreview"
+                            class="logo-preview"
+                            style="display:none;"
+                            alt="شعار المنشأة"
+                        >
+
+                        <div
+                            id="settingLogoPlaceholder"
+                            class="logo-preview logo-placeholder"
+                        >
+                            لا يوجد شعار
+                        </div>
+
+
+                        <div class="logo-upload-actions">
+
+                            <button
+                                type="button"
+                                class="secondary-button"
+                                id="settingLogoUploadButton"
+                            >
+                                رفع شعار
+                            </button>
+
+                            <button
+                                type="button"
+                                class="secondary-button"
+                                id="settingLogoRemoveButton"
+                                style="display:none;"
+                            >
+                                إزالة الشعار
+                            </button>
+
+                        </div>
+
+
+                        <input
+                            type="file"
+                            id="settingLogoInput"
+                            accept="image/*"
+                            style="display:none;"
+                        >
+
+                    </div>
+
+                    <small class="input-help">
+                        يظهر الشعار في أعلى الفاتورة عند الطباعة أو الحفظ PDF.
+                    </small>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="settingBusinessPhone">
+                            رقم التواصل (اختياري)
+                        </label>
+
+                        <input
+                            id="settingBusinessPhone"
+                            type="tel"
+                            maxlength="20"
+                            placeholder="05xxxxxxxx"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="settingTaxNumber">
+                            الرقم الضريبي (اختياري)
+                        </label>
+
+                        <input
+                            id="settingTaxNumber"
+                            type="text"
+                            maxlength="30"
+                            placeholder="3xxxxxxxxxxxxxx"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="settingBusinessAddress">
+                        العنوان (اختياري)
+                    </label>
+
+                    <input
+                        id="settingBusinessAddress"
+                        type="text"
+                        maxlength="200"
+                        placeholder="مثال: طريق الملك عبدالعزيز، الرياض"
+                    >
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="settingCurrency">
+                            العملة
+                        </label>
+
+                        <input
+                            id="settingCurrency"
+                            type="text"
+                            maxlength="20"
+                            placeholder="ريال"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="settingDefaultTaxRate">
+                            نسبة الضريبة الافتراضية %
+                        </label>
+
+                        <input
+                            id="settingDefaultTaxRate"
+                            type="number"
+                            min="0"
+                            max="100"
+                            step="0.01"
+                            placeholder="0"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="settingLanguage">
+                        اللغة
+                    </label>
+
+                    <select id="settingLanguage">
+
+                        <option value="ar">
+                            العربية
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="settingInvoiceThankYou">
+                        عبارة الشكر أسفل الفاتورة
+                    </label>
+
+                    <input
+                        id="settingInvoiceThankYou"
+                        type="text"
+                        maxlength="200"
+                        placeholder="شكرًا لتعاملكم معنا"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="settingNotes">
+                        ملاحظات عامة
+                    </label>
+
+                    <textarea
+                        id="settingNotes"
+                        rows="4"
+                        maxlength="1000"
+                        placeholder="ملاحظات اختيارية"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        حفظ الإعدادات
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <h3>
+                    حالة قاعدة البيانات
+                </h3>
+
+            </div>
+
+
+            <div class="database-status">
+
+                <span class="status active">
+                    SQLite
+                </span>
+
+                <span id="databaseStatusText">
+                    جاهزة
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <h3>
+                    النسخ الاحتياطي
+                </h3>
+
+            </div>
+
+
+            <p class="form-help">
+                يُنصح بأخذ نسخة احتياطية بشكل دوري وحفظها خارج الجهاز (البريد الإلكتروني أو التخزين السحابي)، خصوصًا عند استخدام التطبيق كأيقونة على الشاشة الرئيسية.
+            </p>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="exportBackupButton"
+                >
+                    تنزيل نسخة احتياطية
+                </button>
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="restoreBackupButton"
+                >
+                    استعادة نسخة احتياطية
+                </button>
+
+            </div>
+
+
+            <input
+                type="file"
+                id="restoreBackupInput"
+                accept=".sqlite,.db,application/octet-stream"
+                style="display:none;"
+            >
+
+        </div>
+
+
+        <div
+            class="dashboard-card"
+            id="cloudAccountCard"
+        >
+
+            <div class="card-header">
+
+                <h3>
+                    النسخ الاحتياطي السحابي (Firebase)
+                </h3>
+
+            </div>
+
+
+            <div id="cloudNotConfiguredState">
+
+                <p class="form-help">
+                    لم يتم إعداد Firebase بعد. أضف بيانات مشروعك في ملف js/firebase-config.js لتفعيل المزامنة السحابية التلقائية.
+                </p>
+
+            </div>
+
+
+            <div
+                id="cloudLoggedOutState"
+                style="display:none;"
+            >
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="cloudEmail">
+                            البريد الإلكتروني
+                        </label>
+
+                        <input
+                            id="cloudEmail"
+                            type="email"
+                            placeholder="example@email.com"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="cloudPassword">
+                            كلمة المرور
+                        </label>
+
+                        <input
+                            id="cloudPassword"
+                            type="password"
+                            placeholder="••••••••"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="cloudLoginButton"
+                    >
+                        تسجيل الدخول
+                    </button>
+
+                </div>
+
+
+                <p class="form-help">
+                    أنشئ المستخدم أولًا من لوحة Firebase: Authentication ← Users ← Add user.
+                </p>
+
+            </div>
+
+
+            <div
+                id="cloudLoggedInState"
+                style="display:none;"
+            >
+
+                <div class="database-status">
+
+                    <span class="status active">
+                        متصل
+                    </span>
+
+                    <span id="cloudAccountEmail">
+                    </span>
+
+                </div>
+
+
+                <p
+                    class="form-help"
+                    id="cloudSyncStatusText"
+                >
+                    لم تتم أي مزامنة بعد.
+                </p>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="cloudSyncNowButton"
+                    >
+                        مزامنة الآن
+                    </button>
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="cloudLogoutButton"
+                    >
+                        تسجيل الخروج
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- ========================= -->
+<!-- نافذة المنتجات -->
+<!-- ========================= -->
+
+<div
+    class="modal-overlay"
+    id="productModal"
+    aria-hidden="true"
+>
+
+    <div
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+    >
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2 id="productModalTitle">
+                    إضافة منتج
+                </h2>
+
+                <p>
+                    أدخل بيانات المنتج
+                </p>
+
+            </div>
+
+
+            <button
+                class="close-button"
+                id="closeProductModal"
+                type="button"
+                aria-label="إغلاق"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="productForm">
+
+            <input
+                type="hidden"
+                id="productId"
+            >
+
+
+            <div class="form-group">
+
+                <label for="productName">
+                    اسم المنتج
+                </label>
+
+                <input
+                    id="productName"
+                    type="text"
+                    placeholder="مثال: نعناع مغربي"
+                    required
+                    maxlength="100"
+                >
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="productUnit">
+                        وحدة البيع
+                    </label>
+
+                    <input
+                        id="productUnit"
+                        type="text"
+                        placeholder="ربطة"
+                        required
+                        maxlength="50"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="productPrice">
+                        السعر
+                    </label>
+
+                    <input
+                        id="productPrice"
+                        type="number"
+                        placeholder="5.00"
+                        min="0"
+                        step="0.01"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label class="checkbox-label">
+
+                    <input
+                        id="productActive"
+                        type="checkbox"
+                        checked
+                    >
+
+                    <span>
+                        المنتج نشط
+                    </span>
+
+                </label>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="productNotes">
+                    ملاحظات
+                </label>
+
+                <textarea
+                    id="productNotes"
+                    rows="3"
+                    placeholder="ملاحظات اختيارية"
+                    maxlength="500"
+                ></textarea>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="cancelProductButton"
+                >
+                    إلغاء
+                </button>
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    حفظ المنتج
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- ========================= -->
+<!-- الإشعار -->
+<!-- ========================= -->
+
+<div
+    id="toast"
+    class="toast"
+    role="status"
+    aria-live="polite"
+></div>
+
+
+</div>
+<!-- إغلاق appShell -->
+
+
+<!-- ========================= -->
+<!-- SQLite / sql.js -->
+<!-- ========================= -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.13.0/sql-wasm.js"></script>
+
+
+
+<!-- ========================= -->
+<!-- الرسوم البيانية وتصدير Excel -->
+<!-- ========================= -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
+
+
+
+<!-- ========================= -->
+<!-- Firebase (مزامنة سحابية) -->
+<!-- ========================= -->
+
+<script src="https://www.gstatic.com/firebasejs/12.17.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.17.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore-compat.js"></script>
+
+
+
+<!-- ========================= -->
+<!-- ملفات التطبيق -->
+<!-- ========================= -->
+
+<script src="js/firebase-config.js"></script>
+<script src="js/db.js"></script>
+<script src="js/products.js"></script>
+<script src="js/sales.js"></script>
+<script src="js/invoice.js"></script>
+<script src="js/expenses.js"></script>
+<script src="js/production.js"></script>
+<script src="js/waste.js"></script>
+<script src="js/reports.js"></script>
+<script src="js/excel-export.js"></script>
+<script src="js/cloud-sync.js"></script>
+<script src="js/app.js"></script>
+
+
+
+<!-- ========================= -->
+<!-- تفعيل العمل بدون إنترنت (PWA) -->
+<!-- ========================= -->
+
+<script>
+
+    if (
+        "serviceWorker" in
+        navigator
+    ) {
+
+        window.addEventListener(
+            "load",
+            function () {
+
+                navigator.serviceWorker
+                    .register(
+                        "service-worker.js"
+                    )
+                    .catch(
+                        function (error) {
+
+                            console.error(
+                                "تعذر تسجيل service worker.",
+                                error
+                            );
+
+                        }
+                    );
+
+            }
+        );
+
+    }
+
+</script>
+
+</body>
+</html>
